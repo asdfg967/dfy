@@ -1,0 +1,213 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --font-sans:
+    'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', ui-sans-serif,
+    system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+}
+
+:root {
+  --background: #F8FAFB;
+  --foreground: #1E293B;
+  --card: #FFFFFF;
+  --card-foreground: #1E293B;
+  --popover: #FFFFFF;
+  --popover-foreground: #1E293B;
+  --primary: #3B82F6;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F1F5F9;
+  --secondary-foreground: #1E293B;
+  --muted: #F1F5F9;
+  --muted-foreground: #64748B;
+  --accent: #F1F5F9;
+  --accent-foreground: #1E293B;
+  --destructive: #EF4444;
+  --border: #E2E8F0;
+  --input: #E2E8F0;
+  --ring: #3B82F6;
+  --radius: 0.75rem;
+  --sidebar-background: #FFFFFF;
+  --sidebar-foreground: #1E293B;
+  --sidebar-primary: #3B82F6;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F1F5F9;
+  --sidebar-accent-foreground: #1E293B;
+  --sidebar-border: #E2E8F0;
+  --sidebar-ring: #3B82F6;
+  --chart-1: #3B82F6;
+  --chart-2: #3B82F6;
+  --chart-3: #F59E0B;
+  --chart-4: #8B5CF6;
+  --chart-5: #EF4444;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Mobile-optimized styles */
+@layer utilities {
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .safe-top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  .tap-highlight {
+    -webkit-tap-highlight-color: transparent;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Task type colors */
+.type-homework { background-color: #EFF6FF; color: #3B82F6; }
+.type-exam { background-color: #FEF2F2; color: #EF4444; }
+.type-meeting { background-color: #F5F3FF; color: #8B5CF6; }
+.type-payment { background-color: #FFFBEB; color: #F59E0B; }
+.type-checkin { background-color: #ECFEFF; color: #06B6D4; }
+.type-other { background-color: #F3F4F6; color: #6B7280; }
+
+/* Urgency borders */
+.urgency-expired { border-left: 4px solid #EF4444; background-color: #FEF2F2; }
+.urgency-today { border-left: 4px solid #F97316; }
+.urgency-soon { border-left: 4px solid #EAB308; }
+.urgency-normal { border-left: 4px solid #3B82F6; }
+.urgency-none { border-left: 4px solid #E2E8F0; }
+
+/* Card animation */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out forwards;
+}
+
+/* Button press effect */
+.btn-press:active {
+  transform: scale(0.97);
+}
+
+/* Strikethrough for completed tasks */
+.task-completed .task-title {
+  text-decoration: line-through;
+  color: #94A3B8;
+}
+
+/* ===== 生活管理台扩展 ===== */
+/* 手动计划类型色 */
+.type-plan { background-color: #EFF6FF; color: #2563EB; }
+
+/* 计划时间块颜色（文字+浅底） */
+.create-study { background-color: #EFF6FF; color: #2563EB; }
+.create-sport { background-color: #FEF3C7; color: #D97706; }
+.create-rest { background-color: #EFF6FF; color: #2563EB; }
+.create-read { background-color: #F5F3FF; color: #7C3AED; }
+.create-life { background-color: #FCE7F3; color: #DB2777; }
+.create-other { background-color: #F1F5F9; color: #64748B; }
+
+/* 时间轴彩色块（实色） */
+.block-homework { background-color: #3B82F6; }
+.block-exam { background-color: #EF4444; }
+.block-meeting { background-color: #8B5CF6; }
+.block-payment { background-color: #F59E0B; }
+.block-checkin { background-color: #06B6D4; }
+.block-plan { background-color: #3B82F6; }
+.block-other { background-color: #94A3B8; }
+.block-study { background-color: #2563EB; }
+.block-sport { background-color: #D97706; }
+.block-rest { background-color: #2563EB; }
+.block-read { background-color: #7C3AED; }
+.block-life { background-color: #DB2777; }
+
+/* 列表入场 */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fadeUp 0.35s ease-out both;
+}
+
+/* 打卡勾选弹跳 */
+@keyframes checkPop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.18); }
+  70% { transform: scale(0.94); }
+  100% { transform: scale(1); }
+}
+.animate-check-pop {
+  animation: checkPop 0.55s ease-out;
+}
+
+/* 周历选中列 */
+.week-day-active {
+  background: linear-gradient(180deg, #DBEAFE 0%, #BFDBFE 100%);
+}
+
+/* 隐藏 number input 箭头 */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
